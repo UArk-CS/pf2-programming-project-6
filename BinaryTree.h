@@ -25,22 +25,23 @@ public:
     ~BinaryTree();
 
     // General binary tree operations
-    bool Search(int Value);
-    bool Insert(int Value);
-    bool Delete(int Value);
+    bool Search(int value_);
+    bool Insert(int value_);
+    bool Delete(int value_);
     void Print();
     int Count();
     int Height();
 
 private:
     // Helper functions
-    bool SearchHelper(int Value, Node * Tree);
-    bool InsertHelper(int Value, Node * &Tree);
-    bool DeleteNode(Node * &Tree);
-    bool DeleteHelper(int Value, Node * &Tree);
-    void PrintHelper(Node * Tree);
-    int CountHelper(Node *Tree);
-    int HeightHelper(Node *Tree);
+    void DestroyHelper(Node * Tree_);
+    bool SearchHelper(int value_, Node *Tree_);
+    bool InsertHelper(int value_, Node *&Tree_);
+    bool DeleteNode(Node *&Tree_);
+    bool DeleteHelper(int value_, Node *&Tree_);
+    void PrintHelper(Node *Tree_);
+    int CountHelper(Node *Tree_);
+    int HeightHelper(Node *Tree_);
 
     // Tree pointer
     Node *Root;
