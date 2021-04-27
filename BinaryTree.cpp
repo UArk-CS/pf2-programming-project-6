@@ -92,3 +92,53 @@ void BinaryTree::Print() {
     cout << endl;
 
 }
+
+int BinaryTree::CountHelper(Node *Tree) {
+
+    int count = 1;
+
+    if (Tree == NULL) {
+
+        return 0;
+
+    }
+
+    if (Tree->Left != NULL) {
+
+        count += CountHelper(Tree->Left);
+
+    }
+
+    if (Tree->Right != NULL) {
+
+        count += CountHelper(Tree->Right);
+
+    }
+
+    return count;
+
+}
+
+int BinaryTree::Count() {
+
+    return CountHelper(Root);
+
+}
+
+int BinaryTree::HeightHelper(Node *Tree) {
+
+    if (Tree == NULL) {
+
+        return 0;
+
+    }
+
+    return (1 + max(HeightHelper(Tree->Left), HeightHelper(Tree->Right)));
+
+}
+
+int BinaryTree::Height() {
+
+    return HeightHelper(Root);
+
+}
