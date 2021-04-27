@@ -29,7 +29,7 @@ BinaryTree::~BinaryTree() {
 
 }
 
-bool BinaryTree::SearchHelper(int value_, Node *Tree_) {
+bool BinaryTree::SearchHelper(string value_, Node *Tree_) {
 
     // Data value not found
     if (Tree_ == NULL)
@@ -47,7 +47,7 @@ bool BinaryTree::SearchHelper(int value_, Node *Tree_) {
 
 }
 
-bool BinaryTree::Search(int value_) {
+bool BinaryTree::Search(string value_) {
 
     // Call tree searching function
     return (SearchHelper(value_, Root));
@@ -56,7 +56,7 @@ bool BinaryTree::Search(int value_) {
 
 string BinaryTree::CreateKey(Node *&Tree_) {
 
-    return Tree_->StreetName + ", " + Tree_->City;
+    return (Tree_->StreetName + ", " + Tree_->City);
 
 }
 
@@ -138,7 +138,7 @@ bool BinaryTree::DeleteNode(Node *&Tree_) {
 
 }
 
-bool BinaryTree::DeleteHelper(int value_, Node *&Tree_) {
+bool BinaryTree::DeleteHelper(string value_, Node *&Tree_) {
 
     // Data value not found
     if (Tree_ == NULL)
@@ -156,7 +156,7 @@ bool BinaryTree::DeleteHelper(int value_, Node *&Tree_) {
 
 }
 
-bool BinaryTree::Delete(int value_) {
+bool BinaryTree::Delete(string value_) {
 
     // Call tree deletion function
     return (DeleteHelper(value_, Root));
