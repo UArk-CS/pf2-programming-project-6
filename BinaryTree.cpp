@@ -54,34 +54,46 @@ bool BinaryTree::Search(int value_) {
 
 }
 
-bool BinaryTree::InsertHelper(int value_, Node * &Tree_) {
+string BinaryTree::CreateKey(Node *&Tree_) {
+
+    return Tree_->StreetName + ", " + Tree_->City;
+
+}
+
+bool BinaryTree::InsertHelper(string value_, int &houseNumber_, string &streetName_, string &city_, string &state_, int &zipcode_, Node * &Tree_) {
 
     // Insert data into the Tree_
     if (Tree_ == NULL)
     {
         Tree_ = new Node;
         Tree_->Value = value_;
+        Tree_->HouseNumber = houseNumber_;
+        Tree_->StreetName = streetName_;
+        Tree_->City = city_;
+        Tree_->State = state_;
+        Tree_->Zipcode = zipcode_;
         Tree_->Left = NULL;
         Tree_->Right = NULL;
         return true;
     }
 
-        // Data value already inserted
+        // Data value_ already inserted
     else if (Tree_->Value == value_)
         return false;
 
         // Recursively search for insertion position
     else if (Tree_->Value > value_)
-        return (InsertHelper(value_, Tree_->Left));
+        return (InsertHelper(value_, houseNumber_, streetName_, city_, state_, zipcode_, Tree_->Left));
     else if (Tree_->Value < value_)
-        return (InsertHelper(value_, Tree_->Right));
+        return (InsertHelper(value_, houseNumber_, streetName_, city_, state_, zipcode_, Tree_->Right));
 
 }
 
-bool BinaryTree::Insert(int value_) {
+bool BinaryTree::Insert(Node *&Tree_) {
 
-    // Call tree insertion function
-    return (InsertHelper(value_, Root));
+    string value = CreateKey(Tree_);
+
+    return (InsertHelper(value, Tree_->HouseNumber, Tree_->StreetName, Tree_->City, Tree_->State, Tree_->Zipcode,Root));
 
 }
 
