@@ -12,11 +12,11 @@ using namespace std;
 struct Node {
 
     string Value;
-    int HouseNumber;
+    string HouseNumber;
     string StreetName;
     string City;
     string State;
-    int Zipcode;
+    string Zipcode;
     Node *Left;
     Node *Right;
 
@@ -30,9 +30,10 @@ public:
     ~BinaryTree();
 
     // General binary tree operations
+    void ReadFile(string &fileName_, BinaryTree &tree_);
     bool Search(string value_);
-    string CreateKey(Node *&Tree_);
-    bool Insert(Node *&Tree_);
+    string CreateKey(string houseNumber_, string streetName_, string city_);
+    bool Insert(string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_);
     bool Delete(string value_);
     void Print();
     int Count();
@@ -42,7 +43,7 @@ private:
     // Helper functions
     void DestroyHelper(Node * Tree_);
     bool SearchHelper(string value_, Node *Tree_);
-    bool InsertHelper(string value_, int &houseNumber_, string &streetName_, string &city_, string &state_, int &zipcode_, Node *&Tree_);
+    bool InsertHelper(string value_, string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_, Node *&Tree_);
     bool DeleteNode(Node *&Tree_);
     bool DeleteHelper(string value_, Node *&Tree_);
     void PrintHelper(Node *Tree_);

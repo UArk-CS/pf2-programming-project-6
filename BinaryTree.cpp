@@ -3,6 +3,7 @@
 //
 
 #include "BinaryTree.h"
+#include <fstream>
 
 BinaryTree::BinaryTree() {
 
@@ -26,6 +27,41 @@ BinaryTree::~BinaryTree() {
 
     // Call tree destroy function
     DestroyHelper(Root);
+
+}
+
+void BinaryTree::ReadFile(string &fileName_, BinaryTree &tree_) {
+
+    string houseNumber;
+    string streetName;
+    string city;
+    string state;
+    string zipcode;
+    string blank;
+    ifstream din;
+    din.open(fileName_);
+    if (din.fail()) {
+        return;
+    }
+
+    if (din.is_open()) {
+
+        while (!din.eof()) {
+
+            getline(din, houseNumber);
+            getline(din, streetName);
+            getline(din, city);
+            getline(din, state);
+            getline(din, zipcode);
+
+            tree_.Insert(houseNumber, streetName, city, state, zipcode);
+
+            // Discard new line
+            getline(din, blank);
+
+        }
+
+    }
 
 }
 
@@ -54,13 +90,13 @@ bool BinaryTree::Search(string value_) {
 
 }
 
-string BinaryTree::CreateKey(Node *&Tree_) {
+string BinaryTree::CreateKey(string houseNumber_, string streetName_, string city_) {
 
-    return (Tree_->StreetName + ", " + Tree_->City);
+    return (houseNumber_ + " " + streetName_ + ", " + city_);
 
 }
 
-bool BinaryTree::InsertHelper(string value_, int &houseNumber_, string &streetName_, string &city_, string &state_, int &zipcode_, Node * &Tree_) {
+bool BinaryTree::InsertHelper(string value_, string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_, Node * &Tree_) {
 
     // Insert data into the Tree_
     if (Tree_ == NULL)
@@ -89,11 +125,11 @@ bool BinaryTree::InsertHelper(string value_, int &houseNumber_, string &streetNa
 
 }
 
-bool BinaryTree::Insert(Node *&Tree_) {
+bool BinaryTree::Insert(string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_) {
 
-    string value = CreateKey(Tree_);
+    string value = CreateKey(streetName_, city_);
 
-    return (InsertHelper(value, Tree_->HouseNumber, Tree_->StreetName, Tree_->City, Tree_->State, Tree_->Zipcode,Root));
+    return (InsertHelper(value, houseNumber_, streetName_, city_, state_, zipcode_));
 
 }
 
