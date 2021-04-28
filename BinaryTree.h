@@ -30,7 +30,7 @@ public:
     ~BinaryTree();
 
     // General binary tree operations
-    void ReadFile(string &fileName_, BinaryTree &tree_);
+    void ReadFile(string &fileName_);
     bool Search(string value_);
     string CreateKey(string houseNumber_, string streetName_, string city_);
     bool Insert(string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_);

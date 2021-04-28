@@ -30,7 +30,7 @@ BinaryTree::~BinaryTree() {
 
 }
 
-void BinaryTree::ReadFile(string &fileName_, BinaryTree &tree_) {
+void BinaryTree::ReadFile(string &fileName_) {
 
     string houseNumber;
     string streetName;
@@ -54,7 +54,7 @@ void BinaryTree::ReadFile(string &fileName_, BinaryTree &tree_) {
             getline(din, state);
             getline(din, zipcode);
 
-            tree_.Insert(houseNumber, streetName, city, state, zipcode);
+            Insert(houseNumber, streetName, city, state, zipcode);
 
             // Discard new line
             getline(din, blank);
@@ -96,7 +96,7 @@ string BinaryTree::CreateKey(string houseNumber_, string streetName_, string cit
 
 }
 
-bool BinaryTree::InsertHelper(string value_, string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_, Node * &Tree_) {
+bool BinaryTree::InsertHelper(string value_, string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_, Node *&Tree_) {
 
     // Insert data into the Tree_
     if (Tree_ == NULL)
@@ -127,9 +127,9 @@ bool BinaryTree::InsertHelper(string value_, string &houseNumber_, string &stree
 
 bool BinaryTree::Insert(string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_) {
 
-    string value = CreateKey(streetName_, city_);
+    string value = CreateKey(houseNumber_, streetName_,city_);
 
-    return (InsertHelper(value, houseNumber_, streetName_, city_, state_, zipcode_));
+    return (InsertHelper(value, houseNumber_, streetName_, city_, state_, zipcode_, Root));
 
 }
 
