@@ -9,7 +9,7 @@ int main() {
 
     BinaryTree treeTest;
     treeTest.ReadFile(file);
-    treeTest.WriteSortedFile(file, outputFile);
+    treeTest.WriteSortedFile(outputFile);
 
     return 0;
 
