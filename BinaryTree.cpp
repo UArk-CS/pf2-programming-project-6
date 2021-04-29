@@ -26,7 +26,7 @@ void BinaryTree::DestroyHelper(Node *Tree_) {
 BinaryTree::~BinaryTree() {
 
     // Call tree destroy function
-    DestroyHelper(Root);
+//    DestroyHelper(Root);
 
 }
 
@@ -101,19 +101,31 @@ void BinaryTree::WriteSortedFile(string &outputFileName_) {
 
 bool BinaryTree::SearchHelper(string value_, Node *Tree_) {
 
-    // Data value not found
-    if (Tree_ == NULL)
-        return false;
+    while (Tree_ != NULL) {
+
 
         // Data value found
-    else if (Tree_->Value == value_)
-        return true;
+        if (Tree_->Value == value_) {
 
-        // Recursively search for data value
-    else if (Tree_->Value > value_)
-        return (SearchHelper(value_, Tree_->Left));
-    else if (Tree_->Value < value_)
-        return (SearchHelper(value_, Tree_->Right));
+            cout << Tree_->HouseNumber << endl;
+            cout << Tree_->StreetName << endl;
+            cout << Tree_->City << endl;
+            cout << Tree_->State << endl;
+            cout << Tree_->Zipcode << endl;
+
+            return true;
+
+        }
+
+            // Recursively search for data value
+        else if (Tree_->Value > value_)
+            return (SearchHelper(value_, Tree_->Left));
+        else if (Tree_->Value < value_)
+            return (SearchHelper(value_, Tree_->Right));
+
+    }
+
+
 
 }
 
