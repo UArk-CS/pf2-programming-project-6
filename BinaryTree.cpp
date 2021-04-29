@@ -65,6 +65,56 @@ void BinaryTree::ReadFile(string &fileName_) {
 
 }
 
+void BinaryTree::WriteSortedFileHelper(string &inputFileName_, string &outputFileName_, Node *Tree_) {
+
+    // Open address file
+    ifstream din;
+    din.open(inputFileName_);
+    if (din.fail()) {
+        return;
+    }
+
+    if (din.is_open()) {
+
+        while (!din.eof()) {
+
+            ofstream dout;
+            dout.open(outputFileName_, fstream::app);
+            if (dout.fail()) {
+                return;
+            }
+
+            if (dout.is_open()) {
+
+                if (Tree_ != NULL) {
+
+                    WriteSortedFileHelper(inputFileName_, outputFileName_, Tree_->Left);
+
+                    dout << Tree_->HouseNumber << " " << Tree_->StreetName << ", " << Tree_->City << " " << Tree_->State + " " + Tree_->Zipcode << endl;
+                    dout << endl;
+
+                    WriteSortedFileHelper(inputFileName_, outputFileName_, Tree_->Right);
+
+                }
+
+            }
+
+            dout.close();
+
+        }
+
+    }
+
+    din.close();
+
+}
+
+void BinaryTree::WriteSortedFile(string &inputFileName_, string &outputFileName_) {
+
+    return WriteSortedFileHelper(inputFileName_, outputFileName_, Root);
+
+}
+
 bool BinaryTree::SearchHelper(string value_, Node *Tree_) {
 
     // Data value not found
@@ -199,7 +249,7 @@ bool BinaryTree::Delete(string value_) {
 
 }
 
-void BinaryTree::PrintHelper(Node * Tree_) {
+void BinaryTree::PrintHelper(Node *Tree_) {
 
     // Check terminating condition
     if (Tree_ != NULL)

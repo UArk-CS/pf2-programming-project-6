@@ -32,6 +32,7 @@ public:
     // General binary tree operations
     void ReadFile(string &fileName_);
     bool Search(string value_);
+    void WriteSortedFile(string &inputFileName_, string &outputFileName_);
     string CreateKey(string houseNumber_, string streetName_, string city_);
     bool Insert(string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_);
     bool Delete(string value_);
@@ -41,8 +42,9 @@ public:
     int Height();
 private:
     // Helper functions
-    void DestroyHelper(Node * Tree_);
+    void DestroyHelper(Node *Tree_);
     bool SearchHelper(string value_, Node *Tree_);
+    void WriteSortedFileHelper(string &inputFileName_, string &outputFileName_, Node *Tree_);
     bool InsertHelper(string value_, string &houseNumber_, string &streetName_, string &city_, string &state_, string &zipcode_, Node *&Tree_);
     bool DeleteNode(Node *&Tree_);
     bool DeleteHelper(string value_, Node *&Tree_);
